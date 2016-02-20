@@ -80,6 +80,14 @@ shinyServer(function(input, output, session) {
   output$entitysettable <- renderDataTable({
     datatable(mydata[[input$selectedset]])
   })
+  
+  observeEvent(input$delrow, {
+    validate(
+      need(input$entitysettable_rows_selected > 0, "No row has been selected")
+    )
+    mydata[[input$selectedset]] <- mydata[[input$selectedset]][-input$entitysettable_rows_selected,]
+  })
+  
   ## Selections add to entity set handle
   addtosetmsg <- eventReactive(input$addtolib, {
     validate(
