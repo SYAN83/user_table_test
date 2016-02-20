@@ -11,25 +11,20 @@ shinyUI(
                                actionLink("additem", "Add to Entity Set"),
                                bsModal("additempanel", "Add Selections to Entity Set", 
                                        "additem", size = "large",
-                                       dataTableOutput("libs"),
-                                       br(),
-                                       column(6,
-                                              actionLink("addtolib", "Add to selected Entity Set")
-                                       ),
-                                       hr(),
-                                       fluidRow(
-                                         column(8, textInput("newlib", NULL, "", width = "100%",
-                                                             placeholder = "New Set")),
-                                         column(4, actionLink("addlib", "Create new Entity Set"))
-                                       ),
-                                       uiOutput("errmsg")
+                                       uiOutput("bsModelui")
                                )
                         )
                       )
-               
              ),
-             tabPanel("Entity Sets"
-               
+             tabPanel("Entity Sets",
+                      fluidRow(
+                        column(3, offset = 1,
+                               uiOutput("selectset")),
+                        column(7,
+                               uiOutput("showset")
+                               )
+                      )
+                      
              )
   )
 )
