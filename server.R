@@ -67,6 +67,21 @@ shinyServer(function(input, output, session) {
    selectizeInput("selectedset", "My Entity Sets", names(mydata))
   })
   
+  output$fromset <- renderUI({
+    fluidRow(
+      column(6,selectizeInput("fromset", NULL, names(mydata), selected = NULL, multiple = TRUE)),
+      column(6,actionLink('useset', "Use selected set(s)"))
+    )
+    
+  })
+  
+  observeEvent(input$usseet, {
+    validate(
+      need(!is.null(input$format), "No entity set selected")
+    )
+    print(input$fromset)
+  })
+  
   output$showset <- renderUI({
     validate(
       need(nrow(mydata[[input$selectedset]]) > 0, "Entity set is empty")

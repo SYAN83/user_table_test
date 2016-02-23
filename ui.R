@@ -7,6 +7,7 @@ shinyUI(
                       fluidRow(
                         column(8, offset = 2,
                                h2("Test App"),
+                               uiOutput("fromset"),
                                dataTableOutput("dTable"),
                                actionLink("additem", "Add to Entity Set"),
                                bsModal("additempanel", "Add Selections to Entity Set", 
